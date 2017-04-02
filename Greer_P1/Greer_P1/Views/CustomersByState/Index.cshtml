@@ -1,0 +1,22 @@
+﻿@model Greer_P1.Models.CustomersByStateViewModel
+
+<h2>Browse our Customers by State</h2>
+
+@using (Html.BeginForm("Index", "CustomersByState", FormMethod.Post, new { id = "stateSelect" }))
+{
+    <div>
+        <fieldset>
+            <legend>Select a State Below</legend>
+
+            @*<label for="selCategories">Choose a Category:</label>*@
+            @Html.DropDownList("stateSelect",
+                                    new SelectList(Model.States, "fldStateCode", "fldStateName"),
+                                    "Choose a State",
+                                    new { @onchange = "submit();" })
+
+
+
+
+        </fieldset>
+    </div>
+}

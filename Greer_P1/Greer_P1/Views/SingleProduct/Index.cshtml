@@ -1,0 +1,22 @@
+﻿@model Greer_P1.Models.SingleProductViewModel
+
+<h2>Browse our Product Details</h2>
+
+@using (Html.BeginForm("Index", "SingleProduct", FormMethod.Post, new { id = "ProductSelect" }))
+{
+    <div>
+        <fieldset>
+            <legend>Select a Product Below</legend>
+
+            @*<label for="selCategories">Choose a Category:</label>*@
+            @Html.DropDownList("ProductSelect",
+                                    new SelectList(Model.Inventory, "fldProductSKU", "fldProductName"),
+                                    "Choose a Product",
+                                    new { @onchange = "submit();" })
+
+
+
+
+        </fieldset>
+    </div>
+}

@@ -1,0 +1,79 @@
+﻿@model Greer_P1.Models.CustomersByStateViewModel
+
+<h2>State: @Model.ChosenState.fldStateName </h2>
+
+
+@using (Html.BeginForm("Index", "CustomersByState", FormMethod.Post, new { id = "stateSelect" }))
+{
+    <div>
+        <fieldset>
+            <legend>Select a Different State Below</legend>
+
+            @*<label for="selCategories">Choose a Category:</label>*@
+            @Html.DropDownList("stateSelect",
+                                    new SelectList(Model.States, "fldStateCode", "fldStateName"),
+                                    "Choose a State",
+                                    new { @onchange = "submit();" })
+        </fieldset>
+    </div>
+    <table class="table table-bordered table-striped">
+
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                Zip Code
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone Number
+            </th>
+        </tr>
+
+        @foreach (var item in Model.CustomersInState)
+        {
+            <tr>
+                <td>
+                    @item.fldFirstName
+                </td>
+                <td>
+                    @item.fldLastName
+                </td>
+                <td>
+                    @item.fldAddress
+                </td>
+                <td>
+                    @item.fldCity
+                </td>
+                <td>
+                    @item.fldState
+                </td>
+                <td>
+                    @item.fldZipCode
+                </td>
+                <td>
+                    @item.fldEmail
+                </td>
+                <td>
+                    @item.fldPhoneNumber
+                </td>
+            </tr>
+        }
+
+    </table>
+}

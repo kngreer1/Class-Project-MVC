@@ -1,0 +1,23 @@
+﻿@model Greer_P1.Models.ProductsInCategoryViewModel
+
+<h2>Browse our Inventory by Category</h2>
+
+@using (Html.BeginForm("Index", "ProductsInCategory", FormMethod.Post, new { id = "categoriesSelect" }))
+{
+    <div>
+        <fieldset>
+            <legend>Select a Category Below</legend>
+
+            @*<label for="selCategories">Choose a Category:</label>*@
+            @Html.DropDownList("categoriesSelect",
+                                    new SelectList(Model.Categories, "fldCatagoryID", "fldCatagoryName"),
+                                    "Choose a Category",
+                                    new { @onchange = "submit();" })
+
+
+
+
+        </fieldset>
+    </div>
+}
+

@@ -1,0 +1,71 @@
+﻿@model Greer_P1.Models.SingleProductViewModel
+
+<h2>Product: @Model.ChosenInventory.fldProductName</h2>
+
+
+@using (Html.BeginForm("Index", "SingleProduct", FormMethod.Post, new { id = "ProductSelect" }))
+{
+    <div>
+        <fieldset>
+            <legend>Select a Different Category Below</legend>
+
+            @*<label for="selCategories">Choose a Category:</label>*@
+            @Html.DropDownList("ProductSelect",
+                                    new SelectList(Model.Inventory, "fldProductSKU", "fldProductName"),
+                                    "Choose a Product",
+                                    new { @onchange = "submit();" })
+
+
+
+    </fieldset>
+    </div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Product Description
+            </th>
+            <th>
+                Product Price
+            </th>
+            <th>
+                Product SKU
+            </th>
+            <th>
+                Products Category ID
+            </th>
+        </tr>
+
+        @foreach (var item in Model.InventoryDetails)
+        {
+            <tr>
+                <td>
+                    <a>
+                        <img src="@Url.Content("~/Images/" + item.fldProductImageFile)" height="100" width="100">
+                    </a>
+                </td>
+                <td>
+                    @item.fldProductName
+                </td>
+                <td>
+                    @item.fldProductDescription
+                </td>
+                <td>
+                    @item.fldProductPrice
+                </td>
+                <td>
+                    @item.fldProductSKU
+                </td>
+                <td>
+                    @item.fldCatagoryID 
+                </td>
+            </tr>
+        }
+
+    </table>
+}
